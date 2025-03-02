@@ -6,6 +6,7 @@ import numpy as np
 from tqdm import tqdm
 from torch.utils.data import DataLoader
 from torch.utils.data.dataset import Subset
+import csv
 
 
 def test_efficient_ram_usage(args, eval_ds, model, test_method="hard_resize"):
@@ -224,11 +225,20 @@ def test(args, eval_ds, model, test_method="hard_resize", pca=None):
     positives_per_query = eval_ds.get_positives()
     # args.recall_values by default is [1, 5, 10, 20]
     recalls = np.zeros(len(args.recall_values))
-    for query_index, pred in enumerate(predictions):
-        for i, n in enumerate(args.recall_values):
-            if np.any(np.in1d(pred[:n], positives_per_query[query_index])):
-                recalls[i:] += 1
-                break
+    #testingvar = 1
+    with open('challenge.csv', 'w', newline='') as file:
+        writer = csv.writer(file, delimiter=' ', quoting=csv.QUOTE_NONE, escapechar=' ')
+        for query_index, pred in enumerate(predictions):
+            #if(testingvar < 20):
+            #    print(f"QueryIndex: {query_index} Pred:{pred}")
+            #    testingvar += 1
+            #print these to a csv for msls competition
+            formatted_pred = ' '.join(map(str, pred))
+            writer.writerow([query_index, formatted_pred])
+            for i, n in enumerate(args.recall_values):
+                if np.any(np.in1d(pred[:n], positives_per_query[query_index])):
+                    recalls[i:] += 1
+                    break
     # Divide by the number of queries*100, so the recalls are in percentages
     recalls = recalls / eval_ds.queries_num * 100
     recalls_str = ", ".join([f"R@{val}: {rec:.1f}" for val, rec in zip(args.recall_values, recalls)])

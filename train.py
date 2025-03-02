@@ -4,6 +4,7 @@ import numpy as np
 from tqdm import tqdm,trange
 import torch.nn as nn
 import multiprocessing
+from multiprocessing import Pool
 from os.path import join
 from datetime import datetime
 from torch.utils.data.dataloader import DataLoader
@@ -18,6 +19,7 @@ import network
 from loss import loss_function
 from dataloaders.GSVCities import get_GSVCities
 
+
 import warnings
 warnings.filterwarnings("ignore")
 import os
@@ -30,6 +32,10 @@ commons.setup_logging(args.save_dir)
 commons.make_deterministic(args.seed)
 logging.info(f"Arguments: {args}")
 logging.info(f"The outputs are being saved in {args.save_dir}")
+
+slurm_cpus = len(os.sched_getaffinity(0)) 
+Pool(processes=slurm_cpus)
+logging.info(f'Visible CPUs: {slurm_cpus}')
 logging.info(f"Using {torch.cuda.device_count()} GPUs and {multiprocessing.cpu_count()} CPUs")
 
 #### Creation of Datasets
@@ -86,6 +92,8 @@ logging.info(f"Output dimension of the model is {args.features_dim}")
 #### Getting GSVCities
 train_dataset = get_GSVCities()
 
+logging.info(f'Training Batch Size is {args.train_batch_size}')
+
 train_loader_config = {
     'batch_size': args.train_batch_size,
     'num_workers': args.num_workers,
@@ -101,16 +109,22 @@ for epoch_num in range(start_epoch_num, args.epochs_num):
     
     epoch_start_time = datetime.now()
     epoch_losses = np.zeros((0,1), dtype=np.float32)
+
+    logging.info(f"Initialize start time and loss")
           
     model = model.train()
     epoch_losses=[]
-    for images, place_id in tqdm(ds):       
+    for images, place_id in tqdm(ds):
         BS, N, ch, h, w = images.shape
         # reshape places and labels
         images = images.view(BS*N, ch, h, w)
         labels = place_id.view(-1)
 
-        descriptors = model(images.to(args.device))
+        logging.info(f"Gather images and labels")
+        
+        images = images.to(args.device)
+
+        descriptors = model(images)
         descriptors = descriptors.cuda()
         loss = loss_function(descriptors, labels) # Call the loss_function we defined above     
         del descriptors
@@ -119,7 +133,7 @@ for epoch_num in range(start_epoch_num, args.epochs_num):
         loss.backward()
         optimizer.step()
         scheduler.step()
-        
+
         # Keep track of all losses by appending them to epoch_losses
         batch_loss = loss.item()
         epoch_losses = np.append(epoch_losses, batch_loss)
@@ -158,14 +172,14 @@ logging.info(f"Trained for {epoch_num+1:02d} epochs, in total in {str(datetime.n
 
 #### Test best model on test set
 logging.info("Test *best* model on test set")
-best_model_state_dict = torch.load(join(args.save_dir, "best_model.pth"))["model_state_dict"]
+best_model_state_dict = torch.load(join(args.save_dir, "best_model.pth"), weights_only=False)["model_state_dict"]
 model.load_state_dict(best_model_state_dict)
 recalls, recalls_str = test.test(args, test_ds, model, test_method=args.test_method)
 logging.info(f"Recalls on {test_ds}: {recalls_str}")
 
 #### Test last model on test set
 logging.info("Test *last* model on test set")
-last_model_state_dict = torch.load(join(args.save_dir, "last_model.pth"))["model_state_dict"]
+last_model_state_dict = torch.load(join(args.save_dir, "last_model.pth"), weights_only=False)["model_state_dict"]
 model.load_state_dict(last_model_state_dict)
 recalls, recalls_str = test.test(args, test_ds, model, test_method=args.test_method)
 logging.info(f"Recalls on {test_ds}: {recalls_str}")

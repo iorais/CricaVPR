@@ -23,7 +23,7 @@ commons.setup_logging(args.save_dir)
 commons.make_deterministic(args.seed)
 
 args.features_dim = 14*768
-if args.eval_dataset_name.startswith("pitts"):     # set infer_batch_size = 8 for pitts30k/pitts250k
+if args.eval_dataset_name.startswith("msls"):     # set infer_batch_size = 8 for pitts30k/pitts250k
     args.infer_batch_size = args.infer_batch_size // 2
 logging.info(f"Arguments: {args}")
 logging.info(f"The outputs are being saved in {args.save_dir}")
@@ -38,7 +38,7 @@ if args.resume is not None:
 
 # Enable DataParallel after loading checkpoint, otherwise doing it before
 # would append "module." in front of the keys of the state dict triggering errors
-model = torch.nn.DataParallel(model)
+#model = torch.nn.DataParallel(model)
 
 if args.pca_dim is None:
     pca = None

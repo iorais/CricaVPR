@@ -1,0 +1,6 @@
+*.pyc
+/test
+/slurm
+/datasets_vg/datasets
+
+*.pth

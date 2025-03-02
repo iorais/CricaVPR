@@ -13,7 +13,7 @@ default_transform = T.Compose([
 ])
 
 # NOTE: Hard coded path to dataset folder 
-BASE_PATH = '/home/lufeng/data/VPR/datasets_vg/datasets/gsv_cities/'
+BASE_PATH = '/WAVE/scratch/CSEN-342-Wi25/henchmen/datasets/gsv-cities/'
 
 if not Path(BASE_PATH).exists():
     raise FileNotFoundError(
