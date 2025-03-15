@@ -36,6 +36,39 @@ class L2Norm(nn.Module):
     def forward(self, x):
         return F.normalize(x, p=2, dim=self.dim)
 
+# Defining the BoQBlock, used to learn a set of global learned queries that probe local features
+# This will enhance the cross-image encoder done by CricaVPRNet
+class BoQBlock(nn.Module):
+    def __init__(self, in_dim, num_queries, nheads=8):
+        super(BoQBlock, self).__init__()
+
+        self.encoder = torch.nn.TransformerEncoderLayer(d_model=in_dim, nhead=nheads, dim_feedforward=4*in_dim, batch_first=True, dropout=0.)
+        self.queries = torch.nn.Parameter(torch.randn(1, num_queries, in_dim))
+        
+        # the following two lines are used during training only, you can cache their output in eval.
+        self.self_attn = torch.nn.MultiheadAttention(in_dim, num_heads=nheads, batch_first=True)
+        self.norm_q = torch.nn.LayerNorm(in_dim)
+        #####
+        
+        self.cross_attn = torch.nn.MultiheadAttention(in_dim, num_heads=nheads, batch_first=True)
+        self.norm_out = torch.nn.LayerNorm(in_dim)
+
+    def forward(self, x):
+        B = x.size(0)
+        x = self.encoder(x)
+        
+        q = self.queries.repeat(B, 1, 1)
+        
+        # the following two lines are used during training.
+        # for stability purposes 
+        q = q + self.self_attn(q, q, q)[0]
+        q = self.norm_q(q)
+        #######
+        
+        out, attn = self.cross_attn(q, x, x)        
+        out = self.norm_out(out)
+        return x, out, attn.detach()
+        
 
 class CricaVPRNet(nn.Module):
     """The used networks are composed of a backbone and an aggregation layer.
@@ -45,13 +78,19 @@ class CricaVPRNet(nn.Module):
         self.backbone = get_backbone(pretrained_foundation, foundation_model_path)
         self.aggregation = nn.Sequential(L2Norm(), GeM(work_with_tokens=None), Flatten())
 
+        # BoQ encoding
+        in_dim = 768
+        num_queries = 32
+        num_layers = 2
+        self.boqs = nn.ModuleList([BoQBlock(in_dim, num_queries, nheads=in_dim//64) for _ in range(num_layers)])
+
         # In TransformerEncoderLayer, "batch_first=False" means the input tensors should be provided as (seq, batch, feature) to encode on the "seq" dimension.
         # Our input tensor is provided as (batch, seq, feature), which performs encoding on the "batch" dimension.
         encoder_layer = nn.TransformerEncoderLayer(d_model=768, nhead=16, dim_feedforward=2048, activation="gelu", dropout=0.1, batch_first=False)
         self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=2) # Cross-image encoder
 
     def forward(self, x):
-        x = self.backbone(x)        
+        x = self.backbone(x)       
 
         B,P,D = x["x_prenorm"].shape
         W = H = int(math.sqrt(P-1))
@@ -65,6 +104,30 @@ class CricaVPRNet(nn.Module):
         x = [i.unsqueeze(1) for i in [x0,x10,x11,x12,x13,x20,x21,x22,x23,x24,x25,x26,x27,x28]]
 
         x = torch.cat(x,dim=1)
+
+        #here the shape of x should be B x 14 x D
+        print(x.shape)
+
+        #assuming that it is...
+
+        #BoQ encoding on the sequence
+        outs = []
+        attns = []
+        for i in range(len(self.boqs)):
+            x, out, attn = self.boqs[i](x)
+            outs.append(out)
+            attns.append(attn)
+        out = torch.cat(outs, dim=1)
+        #out = self.fc(out.permute(0, 2, 1))
+        #out = out.flatten(1)
+        #out = torch.nn.functional.normalize(out, p=2, dim=-1)
+
+        print(out.shape)
+
+        #Feed BoQ encoded outputs to cross-image encoder
+        x = out
+
+        #Cross-Image encoding on the batch
         x = self.encoder(x).view(B,14*D)
         x = torch.nn.functional.normalize(x, p=2, dim=-1)
         return x
