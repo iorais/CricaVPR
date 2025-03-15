@@ -11,21 +11,21 @@
 #SBATCH --mem-per-cpu=4G
 #SBATCH --time=12:00:00 
 #
-#SBATCH --mail-user=iorais@scu.edu
+#SBATCH --mail-user=emitchell@scu.edu
 #SBATCH --mail-type=ALL
 
-DS_PATH=datasets_vg/datasets
-EVAL=msls
-TEST=msls
+DS_PATH=/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets
+EVAL=/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets/msls
+TEST=/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets/msls
 
-PRETRAIN_PATH=zoo/pretrain/CricaVPR.pth
+PRETRAIN_PATH=/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/zoo/pretrain/CricaVPR.pth
 
 module load Anaconda3 
 
 source ~/.bashrc
 conda activate cricavpr
 
-cd /WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR
+cd /WAVE/projects/CSEN-342-Wi25/henchmen/emitchell/CricaVPR
 
 # test command
 python3 eval.py --eval_datasets_folder=$DS_PATH \
