@@ -1,0 +1,57 @@
+2025-03-16 20:56:06   Arguments: Namespace(train_batch_size=72, patience=10, lr=0.0001, optim='adam', epochs_num=1, infer_batch_size=16, pca_dim=None, fc_output_dim=None, seed=0, foundation_model_path='/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/zoo/backbone/dinov2_vitb14_pretrain.pth', resume=None, device='cuda', num_workers=4, resize=[224, 224], test_method='hard_resize', majority_weight=0.01, efficient_ram_testing=False, val_positive_dist_threshold=25, train_positives_dist_threshold=10, recall_values=[1, 5, 10, 100], eval_datasets_folder='/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets', eval_dataset_name='/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets/msls', pca_dataset_folder=None, save_dir='logs/default/2025-03-16_20-56-06')
+2025-03-16 20:56:06   The outputs are being saved in logs/default/2025-03-16_20-56-06
+2025-03-16 20:56:06   Visible CPUs: 8
+2025-03-16 20:56:06   Using 1 GPUs and 8 CPUs
+2025-03-16 20:56:06   Loading dataset /WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets/msls from folder /WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets
+2025-03-16 20:56:06   Val set: < BaseDataset, /WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets/msls - #database: 18871; #queries: 11084 >
+2025-03-16 20:56:07   Test set: < BaseDataset, /WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets/msls - #database: 18871; #queries: 11084 >
+2025-03-16 20:56:07   using MLP layer as FFN
+2025-03-16 20:56:09   Output dimension of the model is 10752
+2025-03-16 20:56:12   Training Batch Size is 72
+2025-03-16 20:56:12   Start training epoch: 00
+2025-03-16 20:56:12   Initialize start time and loss
+2025-03-16 20:56:15   Gather images and labels
+2025-03-16 20:56:20   
+Traceback (most recent call last):
+  File "/WAVE/projects2/CSEN-342-Wi25/henchmen/emitchell/CricaVPR/train.py", line 127, in <module>
+    descriptors = model(images)
+  File "/WAVE/users2/unix/emitchell/.conda/envs/cricavpr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/WAVE/users2/unix/emitchell/.conda/envs/cricavpr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/WAVE/users2/unix/emitchell/.conda/envs/cricavpr/lib/python3.10/site-packages/torch/nn/parallel/data_parallel.py", line 191, in forward
+    return self.module(*inputs[0], **module_kwargs[0])
+  File "/WAVE/users2/unix/emitchell/.conda/envs/cricavpr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/WAVE/users2/unix/emitchell/.conda/envs/cricavpr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/WAVE/projects2/CSEN-342-Wi25/henchmen/emitchell/CricaVPR/network.py", line 94, in forward
+    x = self.backbone(x)
+  File "/WAVE/users2/unix/emitchell/.conda/envs/cricavpr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/WAVE/users2/unix/emitchell/.conda/envs/cricavpr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/WAVE/projects2/CSEN-342-Wi25/henchmen/emitchell/CricaVPR/backbone/vision_transformer.py", line 291, in forward
+    ret = self.forward_features(*args, **kwargs)
+  File "/WAVE/projects2/CSEN-342-Wi25/henchmen/emitchell/CricaVPR/backbone/vision_transformer.py", line 228, in forward_features
+    x = blk(x)
+  File "/WAVE/users2/unix/emitchell/.conda/envs/cricavpr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/WAVE/users2/unix/emitchell/.conda/envs/cricavpr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/WAVE/projects2/CSEN-342-Wi25/henchmen/emitchell/CricaVPR/backbone/dinov2/block.py", line 322, in forward
+    return super().forward(x_or_x_list)
+  File "/WAVE/projects2/CSEN-342-Wi25/henchmen/emitchell/CricaVPR/backbone/dinov2/block.py", line 180, in forward
+    x = x + attn_residual_func(x)
+  File "/WAVE/projects2/CSEN-342-Wi25/henchmen/emitchell/CricaVPR/backbone/dinov2/block.py", line 159, in attn_residual_func
+    return self.ls1(self.attn(self.norm1(x)))
+  File "/WAVE/users2/unix/emitchell/.conda/envs/cricavpr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/WAVE/users2/unix/emitchell/.conda/envs/cricavpr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/WAVE/projects2/CSEN-342-Wi25/henchmen/emitchell/CricaVPR/backbone/dinov2/attention.py", line 69, in forward
+    return super().forward(x)
+  File "/WAVE/projects2/CSEN-342-Wi25/henchmen/emitchell/CricaVPR/backbone/dinov2/attention.py", line 56, in forward
+    attn = attn.softmax(dim=-1)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 872.00 MiB. GPU 0 has a total capacity of 7.92 GiB of which 82.88 MiB is free. Including non-PyTorch memory, this process has 7.82 GiB memory in use. Of the allocated memory 7.30 GiB is allocated by PyTorch, and 411.60 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+

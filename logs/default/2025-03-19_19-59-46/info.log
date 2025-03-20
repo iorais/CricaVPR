@@ -1,0 +1,48 @@
+2025-03-19 19:59:46   Arguments: Namespace(train_batch_size=8, patience=10, lr=0.0001, optim='adam', epochs_num=10, infer_batch_size=16, pca_dim=None, fc_output_dim=None, seed=0, foundation_model_path='/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/zoo/backbone/dinov2_vitb14_pretrain.pth', resume=None, device='cuda', num_workers=4, resize=[224, 224], test_method='hard_resize', majority_weight=0.01, efficient_ram_testing=False, val_positive_dist_threshold=25, train_positives_dist_threshold=10, recall_values=[1, 5, 10, 100], eval_datasets_folder='/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets', eval_dataset_name='/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets/msls', pca_dataset_folder=None, save_dir='logs/default/2025-03-19_19-59-46')
+2025-03-19 19:59:46   The outputs are being saved in logs/default/2025-03-19_19-59-46
+2025-03-19 19:59:46   Visible CPUs: 4
+2025-03-19 19:59:46   Using 1 GPUs and 80 CPUs
+2025-03-19 19:59:47   Val set: < BaseDataset, /WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets/msls - #database: 18871; #queries: 11084 >
+2025-03-19 19:59:47   Test set: < BaseDataset, /WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets/msls - #database: 18871; #queries: 11084 >
+2025-03-19 19:59:47   using MLP layer as FFN
+2025-03-19 19:59:50   Output dimension of the model is 10752
+2025-03-19 19:59:51   Training Batch Size is 8
+2025-03-19 19:59:51   Start training epoch: 00
+2025-03-19 19:59:51   Initialize start time and loss
+2025-03-19 19:59:52   Gather images and labels
+2025-03-19 19:59:55   x Shape: torch.Size([32, 14, 768])
+2025-03-19 19:59:55   Out Shape: torch.Size([32, 64, 768])
+2025-03-19 19:59:55   Output Shape: torch.Size([32, 14, 768])
+2025-03-19 19:59:55   Final Shape: torch.Size([32, 14, 768])
+2025-03-19 19:59:55   
+Traceback (most recent call last):
+  File "/WAVE/projects2/CSEN-342-Wi25/henchmen/emitchell/CricaVPR/train.py", line 129, in <module>
+    loss = loss_function(descriptors, labels) # Call the loss_function we defined above
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/WAVE/projects2/CSEN-342-Wi25/henchmen/emitchell/CricaVPR/loss.py", line 10, in loss_function
+    miner_outputs = miner(descriptors, labels)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/WAVE/users2/unix/emitchell/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/WAVE/users2/unix/emitchell/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/WAVE/users2/unix/emitchell/.local/lib/python3.12/site-packages/pytorch_metric_learning/miners/base_miner.py", line 54, in forward
+    mining_output = self.mine(embeddings, labels, ref_emb, ref_labels)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/WAVE/users2/unix/emitchell/.local/lib/python3.12/site-packages/pytorch_metric_learning/miners/multi_similarity_miner.py", line 16, in mine
+    mat = self.distance(embeddings, ref_emb)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/WAVE/users2/unix/emitchell/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/WAVE/users2/unix/emitchell/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/WAVE/users2/unix/emitchell/.local/lib/python3.12/site-packages/pytorch_metric_learning/distances/base_distance.py", line 28, in forward
+    self.check_shapes(query_emb, ref_emb)
+  File "/WAVE/users2/unix/emitchell/.local/lib/python3.12/site-packages/pytorch_metric_learning/distances/base_distance.py", line 95, in check_shapes
+    raise ValueError(
+ValueError: embeddings must be a 2D tensor of shape (batch_size, embedding_size)
+

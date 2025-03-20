@@ -1,0 +1,13 @@
+2025-03-16 20:40:06   Arguments: Namespace(train_batch_size=72, patience=10, lr=0.0001, optim='adam', epochs_num=50, infer_batch_size=16, pca_dim=None, fc_output_dim=None, seed=0, foundation_model_path=None, resume=None, device='cuda', num_workers=4, resize=[224, 224], test_method='hard_resize', majority_weight=0.01, efficient_ram_testing=False, val_positive_dist_threshold=25, train_positives_dist_threshold=10, recall_values=[1, 5, 10, 100], eval_datasets_folder='/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets', eval_dataset_name='pitts30k', pca_dataset_folder=None, save_dir='logs/default/2025-03-16_20-40-06')
+2025-03-16 20:40:06   The outputs are being saved in logs/default/2025-03-16_20-40-06
+2025-03-16 20:40:06   Visible CPUs: 2
+2025-03-16 20:40:06   Using 0 GPUs and 80 CPUs
+2025-03-16 20:40:06   Loading dataset pitts30k from folder /WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets
+2025-03-16 20:40:06   
+Traceback (most recent call last):
+  File "/WAVE/projects2/CSEN-342-Wi25/henchmen/emitchell/CricaVPR/train.py", line 44, in <module>
+    val_ds = datasets_ws.BaseDataset(args, args.eval_datasets_folder, args.eval_dataset_name, "val")
+  File "/WAVE/projects2/CSEN-342-Wi25/henchmen/emitchell/CricaVPR/datasets_ws.py", line 75, in __init__
+    if not os.path.exists(self.dataset_folder): raise FileNotFoundError(f"Folder {self.dataset_folder} does not exist")
+FileNotFoundError: Folder /WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets/pitts30k/images/val does not exist
+

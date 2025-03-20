@@ -1,0 +1,39 @@
+2025-03-18 14:30:26   Arguments: Namespace(train_batch_size=8, patience=10, lr=0.0001, optim='adam', epochs_num=10, infer_batch_size=16, pca_dim=None, fc_output_dim=None, seed=0, foundation_model_path='/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/zoo/backbone/dinov2_vitb14_pretrain.pth', resume=None, device='cuda', num_workers=4, resize=[224, 224], test_method='hard_resize', majority_weight=0.01, efficient_ram_testing=False, val_positive_dist_threshold=25, train_positives_dist_threshold=10, recall_values=[1, 5, 10, 100], eval_datasets_folder='/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets', eval_dataset_name='/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets/msls', pca_dataset_folder=None, save_dir='logs/default/2025-03-18_14-30-26')
+2025-03-18 14:30:26   The outputs are being saved in logs/default/2025-03-18_14-30-26
+2025-03-18 14:30:26   Visible CPUs: 2
+2025-03-18 14:30:26   Using 1 GPUs and 80 CPUs
+2025-03-18 14:30:27   Val set: < BaseDataset, /WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets/msls - #database: 18871; #queries: 11084 >
+2025-03-18 14:30:27   Test set: < BaseDataset, /WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets/msls - #database: 18871; #queries: 11084 >
+2025-03-18 14:30:28   using MLP layer as FFN
+2025-03-18 14:30:29   Output dimension of the model is 10752
+2025-03-18 14:30:30   Training Batch Size is 8
+2025-03-18 14:30:30   Start training epoch: 00
+2025-03-18 14:30:30   Initialize start time and loss
+2025-03-18 14:30:32   Gather images and labels
+2025-03-18 14:30:33   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:30:34   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:30:34   
+Traceback (most recent call last):
+  File "/WAVE/projects2/CSEN-342-Wi25/henchmen/emitchell/CricaVPR/train.py", line 127, in <module>
+    descriptors = model(images)
+                  ^^^^^^^^^^^^^
+  File "/WAVE/users2/unix/emitchell/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/WAVE/users2/unix/emitchell/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/WAVE/users2/unix/emitchell/.local/lib/python3.12/site-packages/torch/nn/parallel/data_parallel.py", line 192, in forward
+    return self.module(*inputs[0], **module_kwargs[0])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/WAVE/users2/unix/emitchell/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/WAVE/users2/unix/emitchell/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/WAVE/projects2/CSEN-342-Wi25/henchmen/emitchell/CricaVPR/network.py", line 134, in forward
+    x = self.encoder(x).view(B,14*D)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: shape '[32, 10752]' is invalid for input of size 1572864
+

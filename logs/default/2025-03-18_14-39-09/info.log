@@ -1,0 +1,312 @@
+2025-03-18 14:39:09   Arguments: Namespace(train_batch_size=8, patience=10, lr=0.0001, optim='adam', epochs_num=10, infer_batch_size=16, pca_dim=None, fc_output_dim=None, seed=0, foundation_model_path='/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/zoo/backbone/dinov2_vitb14_pretrain.pth', resume=None, device='cuda', num_workers=4, resize=[224, 224], test_method='hard_resize', majority_weight=0.01, efficient_ram_testing=False, val_positive_dist_threshold=25, train_positives_dist_threshold=10, recall_values=[1, 5, 10, 100], eval_datasets_folder='/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets', eval_dataset_name='/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets/msls', pca_dataset_folder=None, save_dir='logs/default/2025-03-18_14-39-09')
+2025-03-18 14:39:09   The outputs are being saved in logs/default/2025-03-18_14-39-09
+2025-03-18 14:39:09   Visible CPUs: 2
+2025-03-18 14:39:09   Using 1 GPUs and 80 CPUs
+2025-03-18 14:39:10   Val set: < BaseDataset, /WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets/msls - #database: 18871; #queries: 11084 >
+2025-03-18 14:39:10   Test set: < BaseDataset, /WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets/msls - #database: 18871; #queries: 11084 >
+2025-03-18 14:39:10   using MLP layer as FFN
+2025-03-18 14:39:12   Output dimension of the model is 10752
+2025-03-18 14:39:13   Training Batch Size is 8
+2025-03-18 14:39:13   Start training epoch: 00
+2025-03-18 14:39:13   Initialize start time and loss
+2025-03-18 14:39:14   Gather images and labels
+2025-03-18 14:39:15   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:15   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:18   Gather images and labels
+2025-03-18 14:39:18   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:18   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:18   Gather images and labels
+2025-03-18 14:39:19   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:19   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:19   Gather images and labels
+2025-03-18 14:39:19   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:19   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:19   Gather images and labels
+2025-03-18 14:39:19   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:19   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:20   Gather images and labels
+2025-03-18 14:39:20   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:20   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:20   Gather images and labels
+2025-03-18 14:39:20   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:20   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:21   Gather images and labels
+2025-03-18 14:39:21   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:21   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:21   Gather images and labels
+2025-03-18 14:39:21   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:21   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:22   Gather images and labels
+2025-03-18 14:39:22   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:22   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:22   Gather images and labels
+2025-03-18 14:39:22   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:22   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:22   Gather images and labels
+2025-03-18 14:39:23   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:23   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:23   Gather images and labels
+2025-03-18 14:39:23   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:23   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:23   Gather images and labels
+2025-03-18 14:39:23   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:23   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:24   Gather images and labels
+2025-03-18 14:39:24   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:24   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:24   Gather images and labels
+2025-03-18 14:39:24   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:24   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:25   Gather images and labels
+2025-03-18 14:39:25   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:25   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:25   Gather images and labels
+2025-03-18 14:39:25   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:25   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:26   Gather images and labels
+2025-03-18 14:39:26   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:26   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:26   Gather images and labels
+2025-03-18 14:39:26   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:26   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:27   Gather images and labels
+2025-03-18 14:39:27   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:27   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:27   Gather images and labels
+2025-03-18 14:39:27   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:27   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:27   Gather images and labels
+2025-03-18 14:39:27   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:27   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:28   Gather images and labels
+2025-03-18 14:39:28   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:28   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:28   Gather images and labels
+2025-03-18 14:39:28   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:28   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:29   Gather images and labels
+2025-03-18 14:39:29   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:29   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:29   Gather images and labels
+2025-03-18 14:39:29   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:29   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:30   Gather images and labels
+2025-03-18 14:39:30   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:30   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:30   Gather images and labels
+2025-03-18 14:39:30   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:30   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:31   Gather images and labels
+2025-03-18 14:39:31   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:31   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:31   Gather images and labels
+2025-03-18 14:39:31   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:31   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:31   Gather images and labels
+2025-03-18 14:39:31   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:31   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:32   Gather images and labels
+2025-03-18 14:39:32   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:32   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:32   Gather images and labels
+2025-03-18 14:39:32   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:32   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:33   Gather images and labels
+2025-03-18 14:39:33   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:33   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:33   Gather images and labels
+2025-03-18 14:39:33   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:33   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:34   Gather images and labels
+2025-03-18 14:39:34   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:34   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:34   Gather images and labels
+2025-03-18 14:39:34   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:34   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:35   Gather images and labels
+2025-03-18 14:39:35   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:35   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:35   Gather images and labels
+2025-03-18 14:39:35   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:35   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:35   Gather images and labels
+2025-03-18 14:39:35   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:36   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:36   Gather images and labels
+2025-03-18 14:39:36   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:36   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:36   Gather images and labels
+2025-03-18 14:39:36   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:36   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:37   Gather images and labels
+2025-03-18 14:39:37   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:37   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:37   Gather images and labels
+2025-03-18 14:39:37   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:37   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:38   Gather images and labels
+2025-03-18 14:39:38   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:38   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:38   Gather images and labels
+2025-03-18 14:39:38   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:38   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:39   Gather images and labels
+2025-03-18 14:39:39   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:39   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:39   Gather images and labels
+2025-03-18 14:39:39   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:39   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:39   Gather images and labels
+2025-03-18 14:39:40   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:40   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:40   Gather images and labels
+2025-03-18 14:39:40   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:40   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:40   Gather images and labels
+2025-03-18 14:39:40   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:40   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:41   Gather images and labels
+2025-03-18 14:39:41   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:41   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:41   Gather images and labels
+2025-03-18 14:39:41   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:41   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:42   Gather images and labels
+2025-03-18 14:39:42   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:42   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:42   Gather images and labels
+2025-03-18 14:39:42   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:42   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:43   Gather images and labels
+2025-03-18 14:39:43   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:43   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:43   Gather images and labels
+2025-03-18 14:39:43   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:43   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:44   Gather images and labels
+2025-03-18 14:39:44   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:44   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:44   Gather images and labels
+2025-03-18 14:39:44   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:44   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:44   Gather images and labels
+2025-03-18 14:39:44   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:44   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:45   Gather images and labels
+2025-03-18 14:39:45   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:45   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:45   Gather images and labels
+2025-03-18 14:39:45   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:45   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:46   Gather images and labels
+2025-03-18 14:39:46   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:46   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:46   Gather images and labels
+2025-03-18 14:39:46   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:46   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:47   Gather images and labels
+2025-03-18 14:39:47   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:47   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:47   Gather images and labels
+2025-03-18 14:39:47   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:47   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:48   Gather images and labels
+2025-03-18 14:39:48   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:48   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:48   Gather images and labels
+2025-03-18 14:39:48   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:48   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:48   Gather images and labels
+2025-03-18 14:39:48   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:48   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:49   Gather images and labels
+2025-03-18 14:39:49   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:49   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:49   Gather images and labels
+2025-03-18 14:39:49   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:49   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:50   Gather images and labels
+2025-03-18 14:39:50   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:50   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:50   Gather images and labels
+2025-03-18 14:39:50   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:50   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:51   Gather images and labels
+2025-03-18 14:39:51   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:51   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:51   Gather images and labels
+2025-03-18 14:39:51   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:51   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:52   Gather images and labels
+2025-03-18 14:39:52   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:52   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:52   Gather images and labels
+2025-03-18 14:39:52   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:52   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:52   Gather images and labels
+2025-03-18 14:39:53   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:53   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:53   Gather images and labels
+2025-03-18 14:39:53   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:53   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:53   Gather images and labels
+2025-03-18 14:39:53   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:53   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:54   Gather images and labels
+2025-03-18 14:39:54   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:54   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:54   Gather images and labels
+2025-03-18 14:39:54   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:54   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:55   Gather images and labels
+2025-03-18 14:39:55   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:55   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:55   Gather images and labels
+2025-03-18 14:39:55   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:55   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:56   Gather images and labels
+2025-03-18 14:39:56   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:56   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:56   Gather images and labels
+2025-03-18 14:39:56   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:56   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:57   Gather images and labels
+2025-03-18 14:39:57   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:57   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:57   Gather images and labels
+2025-03-18 14:39:57   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:57   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:57   Gather images and labels
+2025-03-18 14:39:57   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:57   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:58   Gather images and labels
+2025-03-18 14:39:58   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:58   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:58   Gather images and labels
+2025-03-18 14:39:58   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:58   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:59   Gather images and labels
+2025-03-18 14:39:59   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:59   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:39:59   Gather images and labels
+2025-03-18 14:39:59   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:39:59   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:40:00   Gather images and labels
+2025-03-18 14:40:00   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:40:00   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:40:00   Gather images and labels
+2025-03-18 14:40:00   x Shape: torch.Size([32, 14, 768])
+2025-03-18 14:40:00   Out Shape: torch.Size([32, 64, 768])
+2025-03-18 14:40:00   
+Traceback (most recent call last):
+  File "/WAVE/projects2/CSEN-342-Wi25/henchmen/emitchell/CricaVPR/train.py", line 133, in <module>
+    loss.backward()
+  File "/WAVE/users2/unix/emitchell/.local/lib/python3.12/site-packages/torch/_tensor.py", line 648, in backward
+    torch.autograd.backward(
+  File "/WAVE/users2/unix/emitchell/.local/lib/python3.12/site-packages/torch/autograd/__init__.py", line 353, in backward
+    _engine_run_backward(
+  File "/WAVE/users2/unix/emitchell/.local/lib/python3.12/site-packages/torch/autograd/graph.py", line 824, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+

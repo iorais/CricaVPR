@@ -1,9 +1,9 @@
 #!/bin/bash 
 # 
-#SBATCH --job-name=crica-eval
+#SBATCH --job-name=crica-eval-emitch
 #SBATCH --output=slurm/slurm-%j.out
 # 
-#SBATCH --partition=all
+##SBATCH --partition=all
 #SBATCH --nodes=1 
 #SBATCH --ntasks=1 
 #SBATCH --cpus-per-task=4 
@@ -18,7 +18,8 @@ DS_PATH=/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets
 EVAL=/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets/msls
 TEST=/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets/msls
 
-PRETRAIN_PATH=/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/zoo/pretrain/CricaVPR.pth
+#PRETRAIN_PATH=/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/zoo/pretrain/CricaVPR.pth
+PRETRAIN_PATH=/WAVE/projects/CSEN-342-Wi25/henchmen/emitchell/CricaVPR/logs/default/2025-03-18_19-49-51/best_model.pth
 
 module load Anaconda3 
 
@@ -38,5 +39,5 @@ python3 eval.py --eval_datasets_folder=$DS_PATH \
 #                --pca_dim=4096
 #                --pca_dataset_folder=msls/images/train
 
-#python3 eval.py --eval_datasets_folder=datasets_vg/datasets --eval_dataset_name=msls --resume=logs/default/2025-02-07_18-52-38/best_model.pth --pca_dim=4096 --pca_dataset_folder=msls/images/train
+#python3 eval.py --eval_datasets_folder="/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets" --eval_dataset_name="/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets/msls" --resume="/WAVE/projects/CSEN-342-Wi25/henchmen/emitchell/CricaVPR/logs/default/2025-03-18_19-49-51/best_model.pth" --pca_dim=4096 --pca_dataset_folder="/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets/msls/images/train"
 #python3 eval.py --eval_datasets_folder=datasets_vg/datasets --eval_dataset_name=msls --resume=zoo/pretrain/CricaVPR.pth --pca_dim=4096 --pca_dataset_folder=msls/images/train

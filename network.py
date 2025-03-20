@@ -1,5 +1,6 @@
 
 import torch
+import logging
 from torch import nn
 import torch.nn.functional as F
 from torch.nn.parameter import Parameter
@@ -93,6 +94,8 @@ class CricaVPRNet(nn.Module):
         x = self.backbone(x)       
 
         B,P,D = x["x_prenorm"].shape
+        print(f'B, P, D: {B}, {P}, {D}')
+        #32, 257, 768
         W = H = int(math.sqrt(P-1))
         x0 = x["x_norm_clstoken"]
         x_p = x["x_norm_patchtokens"].view(B,W,H,D).permute(0, 3, 1, 2) 
@@ -106,6 +109,8 @@ class CricaVPRNet(nn.Module):
         x = torch.cat(x,dim=1)
 
         #here the shape of x should be B x 14 x D
+        logging.info(f'x Shape: {x.shape}')
+        # 32 x 14 x 768
         print(x.shape)
 
         #assuming that it is...
@@ -118,18 +123,30 @@ class CricaVPRNet(nn.Module):
             outs.append(out)
             attns.append(attn)
         out = torch.cat(outs, dim=1)
-        #out = self.fc(out.permute(0, 2, 1))
-        #out = out.flatten(1)
-        #out = torch.nn.functional.normalize(out, p=2, dim=-1)
 
+        logging.info(f'Out Shape: {out.shape}')
+        # 32 x 64 x 768
         print(out.shape)
 
+        #project back down to 32 x 14 x 768
+
+        seq_projection = nn.Linear(64, 14).to('cuda')
+
+        output = seq_projection(out.transpose(1, 2)).transpose(1, 2)
+
+        logging.info(f'Output Shape: {output.shape}')
+        print(output.shape)
+
         #Feed BoQ encoded outputs to cross-image encoder
-        x = out
+        x = output
 
         #Cross-Image encoding on the batch
         x = self.encoder(x).view(B,14*D)
+
         x = torch.nn.functional.normalize(x, p=2, dim=-1)
+
+        logging.info(f'Final Shape: {x.shape}')
+        print(x.shape)
         return x
 
 def get_backbone(pretrained_foundation, foundation_model_path):

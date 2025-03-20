@@ -1,0 +1,30 @@
+2025-03-17 19:06:52   Arguments: Namespace(train_batch_size=72, patience=10, lr=0.0001, optim='adam', epochs_num=5, infer_batch_size=16, pca_dim=None, fc_output_dim=None, seed=0, foundation_model_path='/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/zoo/backbone/dinov2_vitb14_pretrain.pth', resume=None, device='cuda', num_workers=4, resize=[224, 224], test_method='hard_resize', majority_weight=0.01, efficient_ram_testing=False, val_positive_dist_threshold=25, train_positives_dist_threshold=10, recall_values=[1, 5, 10, 100], eval_datasets_folder='/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets', eval_dataset_name='/WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets/msls', pca_dataset_folder=None, save_dir='logs/default/2025-03-17_19-06-52')
+2025-03-17 19:06:52   The outputs are being saved in logs/default/2025-03-17_19-06-52
+2025-03-17 19:06:52   Visible CPUs: 8
+2025-03-17 19:06:52   Using 1 GPUs and 8 CPUs
+2025-03-17 19:06:53   Val set: < BaseDataset, /WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets/msls - #database: 18871; #queries: 11084 >
+2025-03-17 19:06:53   Test set: < BaseDataset, /WAVE/projects/CSEN-342-Wi25/henchmen/CricaVPR/datasets_vg/datasets/msls - #database: 18871; #queries: 11084 >
+2025-03-17 19:06:53   using MLP layer as FFN
+2025-03-17 19:06:58   
+Traceback (most recent call last):
+  File "/WAVE/projects2/CSEN-342-Wi25/henchmen/emitchell/CricaVPR/train.py", line 54, in <module>
+    model = model.to(args.device)
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "/WAVE/users2/unix/emitchell/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/WAVE/users2/unix/emitchell/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/WAVE/users2/unix/emitchell/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/WAVE/users2/unix/emitchell/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  [Previous line repeated 1 more time]
+  File "/WAVE/users2/unix/emitchell/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/WAVE/users2/unix/emitchell/.local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    return t.to(
+           ^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB. GPU 0 has a total capacity of 7.92 GiB of which 10.75 MiB is free. Process 655050 has 2.61 GiB memory in use. Process 690544 has 4.75 GiB memory in use. Including non-PyTorch memory, this process has 554.00 MiB memory in use. Of the allocated memory 433.80 MiB is allocated by PyTorch, and 16.20 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
